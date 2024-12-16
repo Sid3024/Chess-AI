@@ -1,0 +1,44 @@
+
+def retrieve_iteration_number(model_iteration, min_puzzle_rating, write=True):
+    iteration = 0
+    with open("/workspace/src/puzzle_tests/lichess/completed_indices.txt", "a+") as file:
+        file.seek(0)
+        completed_indices = file.read()
+        completed_indices = completed_indices.split(",")[:-1]
+        for i, value in enumerate(completed_indices):
+            completed_indices[i] = int(value)
+        while True:
+            if iteration in completed_indices:
+                iteration += 1
+            else:
+                break
+        if write:
+            file.write(f"{iteration},")
+    if write:
+        with open(f"/workspace/src/puzzle_tests/lichess/model_{iteration}.txt", 'w') as file:
+            file.write(f"model_iter: {model_iteration}\n")
+            file.write(f"min_puzzle_rating: {min_puzzle_rating}\n")
+    return iteration
+
+    
+def write_to_file(log_path, total_params, HyperParamConfig, VariableRunConfig, DataConfig):
+    with open(log_path, 'a') as log_file:
+        log_file.write(f"Hyperparameters:\n")
+        log_file.write(f"encoding scheme: {VariableRunConfig.token_encoding_scheme}\n")
+        log_file.write(f"total_batch_size: {HyperParamConfig.total_batch_size}\n")
+        log_file.write(f"adamw_weight_decay: {HyperParamConfig.adamw_weight_decay}\n")
+        log_file.write(f"gradient_clipping: {HyperParamConfig.gradient_clipping}\n")
+        log_file.write(f"constant_lr: {HyperParamConfig.constant_lr}\n")
+        log_file.write(f"max_steps: {HyperParamConfig.max_steps}\n")
+        log_file.write(f"n_layer: {HyperParamConfig.n_layer}\n")
+        log_file.write(f"n_head: {HyperParamConfig.n_head}\n")
+        log_file.write(f"n_embd: {HyperParamConfig.n_embd}\n")
+        log_file.write(f"dropout: {HyperParamConfig.dropout}\n")
+        log_file.write(f"total no of parameters: {total_params}\n\n")
+        log_file.write(f"Run Configuration: \n")
+        log_file.write(f"train steps: {VariableRunConfig.train_steps}\n")
+        log_file.write(f"masking: {VariableRunConfig.masking}\n")
+        log_file.write(f"gpu_batch_size: {VariableRunConfig.gpu_batch_size}\n")
+        log_file.write(f"n1, n2: {DataConfig.n1}, {DataConfig.n2}\n")
+
+
