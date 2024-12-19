@@ -19,8 +19,7 @@ It also implements a modified version of the "smolgen" module introduced by Leel
   - 6 for **white pieces**.
   - 6 for **black pieces**.
   
-  These states have **learned embeddings**. Additionally, we use **relative positional embeddings**, following work by the Leela Chess Zero team ([Leela Chess Zero paper](https://arxiv.org/html/2409.12272v1)).
-
+  These states have **learned embeddings**. Additionally, we use **absolute positional embeddings**.
 - **Next token**: a binary token indicating whose turn it is.
 
 - **Next 4 tokens**: binary tokens representing castling rights.
