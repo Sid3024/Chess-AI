@@ -41,7 +41,7 @@ The dataset consisted of a total of 140 million datapoints stored in SQL.
 
 
 ## Training
-The model was trained for a total of 720k steps (6 epochs). The learning rate was manually decreased every 2 epochs, from 4e-4 to 1e-4 to 3e-5. It was also further decreased by a factor of 10 for the parameters of the output head.
+The model was trained for a total of 720k steps (6 epochs). The batch size was 1024 and the learning rate was manually decreased every 2 epochs, from 4e-4 to 1e-4 to 3e-5. The learning rate was also further decreased by a factor of 10 for the parameters of the output head.
 
 
 
